@@ -1,0 +1,15 @@
+services:
+  mysql:
+    image: mysql:9.7
+    container_name: todo-api-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:? Must add password for mysql root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:?Must add mysql database name}
+      MYSQL_USER: ${MYSQL_USER:?Must add mysql user name}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD?Must add password for mysql user}
+      TZ: ${TZ:-UTC}
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+#    volumes:
+#      - {$MYSQL_DATA_STORAGE_PATH:?Must add path for data storage}:/var/lib/mysql

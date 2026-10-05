@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: todo-api
+  datasource:
+    password: ${MYSQL_PASSWORD:root}
+    username: ${MYSQL_USER:todoapi}
+    driver-class-name: com.mysql.cj.jdbc.Driver
