@@ -1,6 +1,7 @@
 package leojbours.com.br.todo.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +12,8 @@ import jakarta.persistence.Table;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import leojbours.com.br.todo.model.valueobject.Email;
+import leojbours.com.br.todo.model.valueobject.converter.EmailConverter;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,7 +32,8 @@ public class User {
   private String password;
 
   @Column(name = "email", nullable = false)
-  private String email;
+  @Convert(converter = EmailConverter.class)
+  private Email email;
 
   @Column(name = "full_name", nullable = false)
   private String fullName;

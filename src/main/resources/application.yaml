@@ -1,7 +1,12 @@
 spring:
   application:
     name: todo-api
+  config:
+    import: optional:file:.env[.properties]
   datasource:
     password: ${MYSQL_PASSWORD:root}
     username: ${MYSQL_USER:todoapi}
     driver-class-name: com.mysql.cj.jdbc.Driver
+app:
+  password:
+    pepper: ${PASSWORD_PEPPER}
