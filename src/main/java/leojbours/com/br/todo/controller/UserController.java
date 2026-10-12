@@ -16,7 +16,7 @@ public class UserController {
   private final UserService userService;
   private final UserMapper userMapper;
 
-  @PostMapping("/newUser")
+  @PostMapping("/users")
   public ResponseEntity<UserResponseDto> newUser(@RequestBody UserRegisterDto userRegisterDto) {
     return ResponseEntity.ok(userMapper.toResponseDto(userService.newUser(userRegisterDto)));
   }
