@@ -21,7 +21,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "projects")
 @Getter @Setter
-public class Project {
+public class Project implements SoftDeletable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;

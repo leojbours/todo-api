@@ -24,7 +24,7 @@ import lombok.Setter;
     @UniqueConstraint(name = "UK_users__email", columnNames = "email")
 })
 @Getter @Setter
-public class User {
+public class User implements SoftDeletable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;

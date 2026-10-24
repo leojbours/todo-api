@@ -20,7 +20,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "tasks")
 @Getter @Setter
-public class Task {
+public class Task implements SoftDeletable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;

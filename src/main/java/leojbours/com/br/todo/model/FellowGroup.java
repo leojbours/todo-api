@@ -20,7 +20,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "fellow_groups")
 @Getter @Setter
-public class FellowGroup {
+public class FellowGroup implements SoftDeletable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
