@@ -4,6 +4,7 @@ import leojbours.com.br.todo.util.impl.PepperPasswordEncoder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
@@ -15,8 +16,10 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) {
     // Spring Security temporarily disabled
-    return http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+    return http.authorizeHttpRequests(auth -> auth.requestMatchers("/register").permitAll().anyRequest().authenticated())
                .csrf(AbstractHttpConfigurer::disable)
+               .formLogin(Customizer.withDefaults())
+               .httpBasic(Customizer.withDefaults())
                .build();
   }
 

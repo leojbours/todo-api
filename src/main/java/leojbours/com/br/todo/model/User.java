@@ -35,6 +35,9 @@ public class User implements SoftDeletable {
   @Column(name = "password", nullable = false)
   private String password;
 
+  @Column(name = "role", nullable = false)
+  private String role = "user";
+
   @Column(name = "email", nullable = false)
   @Convert(converter = EmailConverter.class)
   private Email email;
