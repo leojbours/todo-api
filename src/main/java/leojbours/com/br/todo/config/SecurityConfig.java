@@ -4,6 +4,7 @@ import leojbours.com.br.todo.util.impl.PepperPasswordEncoder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -14,13 +15,26 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
   @Bean
-  public SecurityFilterChain filterChain(HttpSecurity http) {
+  @Profile("prod")
+  public SecurityFilterChain filterChainProd(HttpSecurity http) {
     // Spring Security temporarily disabled
-    return http.authorizeHttpRequests(auth -> auth.requestMatchers("/register").permitAll().anyRequest().authenticated())
+    return http.redirectToHttps(Customizer.withDefaults())
+               .authorizeHttpRequests(auth -> auth.requestMatchers("/register").permitAll().anyRequest().authenticated())
                .csrf(AbstractHttpConfigurer::disable)
                .formLogin(Customizer.withDefaults())
                .httpBasic(Customizer.withDefaults())
                .build();
+  }
+
+  @Bean
+  @Profile("default")
+  public SecurityFilterChain filterChainDefault(HttpSecurity http) {
+    // Spring Security temporarily disabled
+    return http.authorizeHttpRequests(auth -> auth.requestMatchers("/register").permitAll().anyRequest().authenticated())
+        .csrf(AbstractHttpConfigurer::disable)
+        .formLogin(Customizer.withDefaults())
+        .httpBasic(Customizer.withDefaults())
+        .build();
   }
 
   @Bean
