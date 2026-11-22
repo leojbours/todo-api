@@ -7,6 +7,8 @@ spring:
     password: ${MYSQL_PASSWORD:root}
     username: ${MYSQL_USER:todoapi}
     driver-class-name: com.mysql.cj.jdbc.Driver
+  profiles:
+    default: prod
 app:
   password:
-    pepper: ${PASSWORD_PEPPER}
+    pepper: ${PASSWORD_PEPPER:SAALNJQadfsjndanl@!@__saakKDSLKWd2132DLKNS@*%(*}
